@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart PG Hostel Manager</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand-mark">PG</div>
+    <div>
+      <h1>Smart PG Manager</h1>
+      <p>Simple hostel and payment tracking</p>
+    </div>
+  </header>
+
+  <main class="container">
+    <section class="welcome">
+      <div>
+        <p class="eyebrow">HOSTEL OVERVIEW</p>
+        <h2>Keep your PG running smoothly</h2>
+        <p class="muted">Manage tenants and keep track of this month's bills.</p>
+      </div>
+      <div class="month-label" id="currentMonth"></div>
+    </section>
+
+    <section class="summary" aria-label="Payment summary">
+      <article class="summary-card"><span>Tenants</span><strong id="tenantCount">0</strong></article>
+      <article class="summary-card"><span>Collected</span><strong id="paidTotal">₹0</strong></article>
+      <article class="summary-card"><span>Pending dues</span><strong id="dueTotal">₹0</strong></article>
+    </section>
+
+    <section class="panel form-panel">
+      <div class="section-heading">
+        <div><p class="eyebrow">TENANT DETAILS</p><h2>Add a tenant</h2></div>
+      </div>
+      <form id="tenantForm">
+        <label>Tenant name<input id="name" type="text" placeholder="e.g. Ananya Rao" required></label>
+        <label>Phone number<input id="phone" type="tel" placeholder="e.g. 9876543210" required></label>
+        <label>Room number<input id="room" type="text" placeholder="e.g. 101" required></label>
+        <label>Monthly rent (₹)<input id="rent" type="number" min="0" placeholder="8000" required></label>
+        <label>Electricity bill (₹)<input id="electricity" type="number" min="0" value="0" required></label>
+        <label>Water bill (₹)<input id="water" type="number" min="0" value="0" required></label>
+        <button class="button primary add-button" type="submit">+ Add tenant</button>
+      </form>
+    </section>
+
+    <section class="panel tenants-panel">
+      <div class="section-heading list-heading">
+        <div><p class="eyebrow">MONTHLY RECORDS</p><h2>Tenants &amp; payments</h2></div>
+        <label class="filter-label">Show
+          <select id="statusFilter" aria-label="Filter tenants by payment status">
+            <option value="all">Everyone</option>
+            <option value="pending">Pending</option>
+            <option value="paid">Paid</option>
+          </select>
+        </label>
+      </div>
+      <div id="emptyState" class="empty-state">
+        <div class="empty-icon">⌂</div>
+        <h3>No tenants added yet</h3>
+        <p>Add a tenant above to start tracking rent and bills.</p>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tenant</th><th>Room</th><th>Rent</th><th>Electricity</th><th>Water</th><th>Total</th><th>Status</th><th>Actions</th></tr></thead>
+          <tbody id="tenantRows"></tbody>
+        </table>
+      </div>
+    </section>
+    <p class="footnote">Your records are saved in this browser on this device.</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
